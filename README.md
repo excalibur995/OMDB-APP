@@ -1,5 +1,5 @@
-###no 1 anagram
-
+# Anagram
+```
 function groupAnagrams(arr: string[]):string[][] {
   const result: Record<string, string[]> = {};
   for (const word of arr) {
@@ -12,3 +12,4 @@ function groupAnagrams(arr: string[]):string[][] {
   }
   return Object.values(result);
 }
+```
