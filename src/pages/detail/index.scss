@@ -1,0 +1,23 @@
+.detail--container {
+  color: #fff;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  .movie--detail {
+    padding: 8px;
+    h3 {
+      font-weight: 800 !important;
+    }
+    p {
+      font-size: 12px;
+      padding: 0;
+      margin: 0 4px;
+    }
+    .title--section {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+    }
+  }
+}

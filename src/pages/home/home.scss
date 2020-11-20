@@ -1,0 +1,17 @@
+.home--container {
+  .title--container {
+    padding: 8px;
+    transition: all 0.5s;
+    opacity: 1;
+    z-index: 1;
+    > div > h1,
+    p {
+      color: #fff;
+      text-align: center;
+    }
+    &.isFocus {
+      opacity: 0;
+      z-index: 0;
+    }
+  }
+}
