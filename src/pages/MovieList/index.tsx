@@ -29,7 +29,7 @@ const MovieList = (props: { reduxState: MovieListState; singleState: MovieSingle
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     if (isBottom) {

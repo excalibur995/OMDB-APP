@@ -14,17 +14,13 @@ type ConnectorProps = {
 function DetailMovies(props: ConnectorProps) {
   const dispatch: Dispatch<any> = useDispatch();
   const fetchById = useCallback((id: string) => dispatch(fetchMovieSingle(id)), [dispatch]);
-  const { isLoad, detailed, Movies } = props.reduxState;
+  const { detailed, Movies } = props.reduxState;
   const { id }: { id?: string } = useParams();
 
   function handleInitialState() {
     if (id) {
       fetchById(id);
     }
-  }
-
-  function isObjectEmpty(obj: Object) {
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
 
   useEffect(() => {
