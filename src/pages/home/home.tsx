@@ -8,7 +8,7 @@ import SearchInput from '../SearchMovie/components/SearchInput';
 import './home.scss';
 
 function App(props: { movies: MovieListState }) {
-  const { isFocus, isLoading } = props.movies;
+  const { isFocus } = props.movies;
 
   const getIsFocus = () => {
     return isFocus ? 'isFocus' : '';

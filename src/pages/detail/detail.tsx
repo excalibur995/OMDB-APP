@@ -17,15 +17,11 @@ function DetailMovies(props: ConnectorProps) {
   const { detailed, Movies } = props.reduxState;
   const { id }: { id?: string } = useParams();
 
-  function handleInitialState() {
+  useEffect(() => {
     if (id) {
       fetchById(id);
     }
-  }
-
-  useEffect(() => {
-    handleInitialState();
-  }, [id]);
+  }, [id, fetchById]);
 
   return (
     <GeneralTemplate title={detailed.Title || Movies.Title} withHeader={true} isDetail={true}>

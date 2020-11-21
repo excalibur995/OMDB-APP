@@ -22,7 +22,7 @@ const SearchInput = (props: { movies: MovieListState }): JSX.Element => {
       setCounter(1);
     }, 500);
     return () => clearTimeout(timeOutId);
-  }, [search, fetchingMovie]);
+  }, [search, fetchingMovie, setCounter]);
 
   function onSetFocus() {
     toggleFocus(true);
