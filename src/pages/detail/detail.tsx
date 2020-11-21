@@ -24,10 +24,6 @@ function DetailMovies(props: ConnectorProps) {
   }
 
   useEffect(() => {
-    console.log(props.reduxState.isLoad);
-  }, [props]);
-
-  useEffect(() => {
     handleInitialState();
   }, [id]);
 

@@ -11,37 +11,32 @@ import { MovieSingle } from './redux/types';
 const MovieList = (props: { reduxState: MovieListState; singleState: MovieSingle }) => {
   const { isLoading, movies, search } = props.reduxState;
   const { count } = props.singleState;
-  const [isBottom, setIsBottom] = useState(false);
   const dispatch: Dispatch<any> = useDispatch();
   const fetchingMovie = useCallback((typing: string, page: number) => dispatch(fetchMovie(typing, page)), [dispatch]);
   const setCounter = useCallback((page: number) => dispatch(setCount(page)), [dispatch]);
-
-  const onScroll = () => {
-    if (hasReachedBottom()) {
-      setIsBottom(true);
-    }
-  };
-
-  function hasReachedBottom() {
-    return window.innerHeight + window.scrollY >= document.body.offsetHeight;
-  }
+  const [, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
+    const onScroll = (e: any) => {
+      setScrollTop(e.target.documentElement.scrollTop);
+      setScrolling(e.target.documentElement.scrollTop > scrollTop);
+    };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, [props]);
+  }, [scrollTop]);
 
   useEffect(() => {
-    if (isBottom) {
+    if (scrollTop + window.innerHeight >= document.body.offsetHeight - 2) {
       addMore();
     }
-  }, [isBottom]);
+  }, [scrollTop]);
 
   const addMore = () => {
-    if (count < movies.totalResults) {
+    if (count < movies.totalResults && !isLoading) {
       let counter = count;
-
-      setCounter(counter++);
+      counter = count + 1;
+      setCounter(counter);
       fetchingMovie(search, counter);
     }
   };

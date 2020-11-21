@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import { MovieListState } from '../../../../inteface/GeneralInterface.types';
 import { RootState } from '../../../../store';
+import { setCount } from '../../../MovieList/redux/actions';
 import { emptyMovie, fetchMovie, setFocus as setFocusRedux, typeMovie } from '../../redux/store/actions';
 import './index.scss';
 
@@ -12,11 +13,13 @@ const SearchInput = (props: { movies: MovieListState }): JSX.Element => {
   const searchMovie = useCallback((typing: string) => dispatch(typeMovie(typing)), [dispatch]);
   const fetchingMovie = useCallback((typing: string, page: number) => dispatch(fetchMovie(typing, page)), [dispatch]);
   const emptyingTheMovie = useCallback(() => dispatch(emptyMovie()), [dispatch]);
+  const setCounter = useCallback((page: number) => dispatch(setCount(page)), [dispatch]);
   const { isFocus, search } = props.movies;
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       fetchingMovie(search, 1);
+      setCounter(1);
     }, 500);
     return () => clearTimeout(timeOutId);
   }, [search, fetchingMovie]);
@@ -66,6 +69,6 @@ const mapStateToProps = (state: RootState) => ({
   movies: state.movieReducer,
 });
 
-const connector = connect(mapStateToProps, { setFocusRedux, typeMovie, fetchMovie, emptyMovie });
+const connector = connect(mapStateToProps, { setFocusRedux, typeMovie, fetchMovie, emptyMovie, setCount });
 
 export default connector(SearchInput);

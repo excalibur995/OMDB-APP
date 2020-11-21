@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { GeneralTemplate } from '../../components/GeneralTemplate';
 import { MovieListState } from '../../inteface/GeneralInterface.types';
@@ -20,10 +20,6 @@ function App(props: { movies: MovieListState }) {
     paddingLeft: '20px',
     paddingRight: '20px',
   };
-
-  useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
 
   return (
     <GeneralTemplate title="Omdb Movie App">
